@@ -26,9 +26,12 @@ const TableComponent = () => {
   const [totalSum, setTotalSum] = useState<number>(0)
 
   const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/get/contracts/')
-    console.log(res.data.data)
-    return setData(res.data.data)
+    try {
+      const res = await axios.get('http://127.0.0.1:8000/api/get/contracts/')
+      setData(res.data.data)
+    } catch (error) {
+      console.error(`Error: ${error}`)
+    }
   }
 
   useEffect(() => {
